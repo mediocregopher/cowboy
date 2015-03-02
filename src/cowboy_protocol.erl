@@ -200,6 +200,8 @@ match_eol(<< _, Rest/bits >>, N) ->
 match_eol(_, _) ->
 	nomatch.
 
+parse_method(<<>>, State, _) ->
+    error_terminate(400, State);
 parse_method(<< C, Rest/bits >>, State, SoFar) ->
 	case C of
 		$\r -> error_terminate(400, State);
